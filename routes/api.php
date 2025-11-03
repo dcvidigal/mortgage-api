@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MortageController;
+use App\Http\Controllers\MortgageController;
 
 Route::middleware(\App\Http\Middleware\ApiTokenAuth::class)->group(function () {
-    Route::post('/mortage/calculate', [MortageController::class, 'calculate']);
-    Route::post('/mortage/amortization-schedule', [MortageController::class, 'amortizationSchedule']);
-    Route::post('/mortage/calculate-spread', [MortageController::class, 'calculateWithSpread']);
-    Route::post('/mortage/export', [MortageController::class, 'export']);
+    Route::post('/mortgage/calculate', [MortgageController::class, 'calculate']);
+    Route::post('/mortgage/amortization-schedule', [MortgageController::class, 'amortizationSchedule']);
+    Route::post('/mortgage/calculate-spread', [MortgageController::class, 'calculateWithSpread']);
+    Route::post('/mortgage/export', [MortgageController::class, 'export']);
 });

@@ -7,14 +7,14 @@
     },
     "paths": {
         "/api": {},
-        "/api/mortage/calculate": {
+        "/api/mortgage/calculate": {
             "post": {
                 "tags": [
                     "Mortgage"
                 ],
                 "summary": "Calcula a prestação mensal",
                 "description": "Calcula o valor da prestação mensal com base no tipo de taxa (fixa ou variável) e prazo.",
-                "operationId": "cd231a32fb090c2f7c38264811701cbf",
+                "operationId": "c41a9a3270f295318d3bf3dd09e39394",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -126,14 +126,14 @@
                 ]
             }
         },
-        "/api/mortage/amortization-schedule": {
+        "/api/mortgage/amortization-schedule": {
             "post": {
                 "tags": [
                     "Mortgage"
                 ],
                 "summary": "Gera o plano de amortização completo",
                 "description": "Lista mês a mês com juros, capital amortizado e saldo restante.",
-                "operationId": "0b4092481ceb8a20186745adddd0cf14",
+                "operationId": "af27298d4157261b3c60888ed1455f9c",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -240,14 +240,14 @@
                 ]
             }
         },
-        "/api/mortage/calculate-spread": {
+        "/api/mortgage/calculate-spread": {
             "post": {
                 "tags": [
                     "Mortgage"
                 ],
                 "summary": "Calcula prestação com taxa variável (Euribor + Spread)",
                 "description": "Calcula a prestação mensal considerando index_rate + spread como TAN efetiva.",
-                "operationId": "159f801439d2e66de0e36c4e813c821b",
+                "operationId": "8fcf74a79bbec1c4e18f0d1cfba14239",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -330,14 +330,14 @@
                 ]
             }
         },
-        "/api/mortage/export": {
+        "/api/mortgage/export": {
             "post": {
                 "tags": [
                     "Mortgage"
                 ],
                 "summary": "Exporta simulação em CSV",
                 "description": "Exporta o plano de amortização em formato CSV para download.",
-                "operationId": "c44103ff6d0f9c42b35cbc8ef1fba538",
+                "operationId": "a8b097c26f38149f17968192ed0257a0",
                 "requestBody": {
                     "required": true,
                     "content": {

@@ -2,17 +2,17 @@
 
 namespace Tests\Services;
 
-use App\Services\MortageCalculator;
+use App\Services\MortgageCalculator;
 use PHPUnit\Framework\TestCase;
 
-class MortageCalculatorTest extends TestCase
+class MortgageCalculatorTest extends TestCase
 {
-    protected MortageCalculator $mortageCalculator;
+    protected MortgageCalculator $mortgageCalculator;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->mortageCalculator = new MortageCalculator;
+        $this->mortgageCalculator = new MortgageCalculator;
     }
 
     /**
@@ -24,7 +24,7 @@ class MortageCalculatorTest extends TestCase
         $annualRate = 3.0;
         $months = 360;
         $expectedPayment = 843.21; // Valor esperado calculado previamente
-        $calculatedPayment = $this->mortageCalculator->calculateMontlyPayment($loanAmmount, $annualRate, $months);
+        $calculatedPayment = $this->mortgageCalculator->calculateMontlyPayment($loanAmmount, $annualRate, $months);
 
         $this->assertEquals($expectedPayment, $calculatedPayment);
     }
@@ -36,7 +36,7 @@ class MortageCalculatorTest extends TestCase
         $months = 12;
 
         $expectedPayment = 1000.00; // Valor esperado calculado previamente
-        $calculatedPayment = $this->mortageCalculator->calculateMontlyPayment($loanAmmount, $annualRate, $months);
+        $calculatedPayment = $this->mortgageCalculator->calculateMontlyPayment($loanAmmount, $annualRate, $months);
 
         $this->assertEquals($expectedPayment, $calculatedPayment);
     }
@@ -44,7 +44,7 @@ class MortageCalculatorTest extends TestCase
     public function test_calculate_monthly_payment_with_invalid_parameters(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->mortageCalculator->calculateMontlyPayment(-10000.00, 5.0, 360);
+        $this->mortgageCalculator->calculateMontlyPayment(-10000.00, 5.0, 360);
     }
 
     /**
@@ -56,7 +56,7 @@ class MortageCalculatorTest extends TestCase
         $annualRate = 5.0;
         $months = 12;
 
-        $result = $this->mortageCalculator->generateAmortizationSchedule($loanAmmount, $annualRate, $months);
+        $result = $this->mortgageCalculator->generateAmortizationSchedule($loanAmmount, $annualRate, $months);
 
         $this->assertArrayHasKey('monthly_payment', $result);
         $this->assertArrayHasKey('total_interest', $result);

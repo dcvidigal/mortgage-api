@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class MortageCalculator
+class MortgageCalculator
 {
     /*
      * Calcula a prestação mensal segundo a fórmula de amortização francesa.

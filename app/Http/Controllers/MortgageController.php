@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Validation\ValidationException;
-use App\Services\MortageCalculator;
+use App\Services\MortgageCalculator;
 use Illuminate\Http\Request;
 
-class MortageController extends Controller
+class MortgageController extends Controller
 {
-    protected MortageCalculator $mortageCalculator;
+    protected MortgageCalculator $mortgageCalculator;
 
     public function __construct()
     {
-        $this->mortageCalculator = new MortageCalculator();
+        $this->mortgageCalculator = new MortgageCalculator();
     }
 
     public function calculate(Request $request)
@@ -60,7 +60,7 @@ class MortageController extends Controller
             ? $validated['index_rate'] + $validated['spread']
             : $validated['rate'];
 
-        $scheduleData = $this->mortageCalculator->generateAmortizationSchedule(
+        $scheduleData = $this->mortgageCalculator->generateAmortizationSchedule(
             $validated['loan_amount'],
             $annualRate,
             $months
@@ -125,7 +125,7 @@ class MortageController extends Controller
         }
 
         $result = $this->performCalculation($validated);
-        $scheduleData = $this->mortageCalculator->generateAmortizationSchedule(
+        $scheduleData = $this->mortgageCalculator->generateAmortizationSchedule(
             $validated['loan_amount'],
             $validated['type'] == 'variable'
                 ? $validated['index_rate'] + $validated['spread']
@@ -172,7 +172,7 @@ class MortageController extends Controller
             ? $validated['index_rate'] + $validated['spread']
             : $validated['rate'];
 
-        $monthlyPayment = $this->mortageCalculator->calculateMontlyPayment(
+        $monthlyPayment = $this->mortgageCalculator->calculateMontlyPayment(
             $validated['loan_amount'],
             $annualRate,
             $months

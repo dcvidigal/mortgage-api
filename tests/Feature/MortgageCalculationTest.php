@@ -5,15 +5,15 @@ namespace Feature;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class MortageCalculationTest extends TestCase
+class MortgageCalculationTest extends TestCase
 {
     /**
      * Testa amortização de taxa fixa
      */
-    public function test_fixed_rate_mortage_calculation(): void{
+    public function test_fixed_rate_mortgage_calculation(): void{
         $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . config('app.api_token'),
-    ])->postJson('/api/mortage/calculate', [
+    ])->postJson('/api/mortgage/calculate', [
             'loan_amount' => 200000,
             'duration_years' => 30,
             'rate' => 3.0,
@@ -34,11 +34,11 @@ class MortageCalculationTest extends TestCase
     /**
      * Testa amortização de taxa variável
      */
-    public function test_variable_rate_mortage_calculation(): void
+    public function test_variable_rate_mortgage_calculation(): void
     {
         $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . config('app.api_token'),
-    ])->postJson('/api/mortage/calculate', [
+    ])->postJson('/api/mortgage/calculate', [
             'loan_amount' => 150000,
             'duration_years' => 15,
             'index_rate' => 2.0,
@@ -61,11 +61,11 @@ class MortageCalculationTest extends TestCase
     /**
      * Testa validação de parâmetros inválidos
      */
-    public function test_mortage_calculation_with_invalid_parameters(): void
+    public function test_mortgage_calculation_with_invalid_parameters(): void
     {
         $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . config('app.api_token'),
-    ])->postJson('/api/mortage/calculate', [
+    ])->postJson('/api/mortgage/calculate', [
             'loan_amount' => -50000,
             'duration_years' => 10,
             'rate' => 4.0,
@@ -79,11 +79,11 @@ class MortageCalculationTest extends TestCase
     /*
      * Testa validação quando a duração não é fornecida
      * */
-    public function test_mortage_calculation_without_duration(): void
+    public function test_mortgage_calculation_without_duration(): void
     {
         $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . config('app.api_token'),
-    ])->postJson('/api/mortage/calculate', [
+    ])->postJson('/api/mortgage/calculate', [
             'loan_amount' => 100000,
             'type' => 'fixed',
             'rate' => 5.0,
@@ -96,11 +96,11 @@ class MortageCalculationTest extends TestCase
     /**
      * Testa cálculo com duração em meses
      * */
-    public function test_mortage_calculation_with_duration_in_months(): void
+    public function test_mortgage_calculation_with_duration_in_months(): void
     {
         $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . config('app.api_token'),
-    ])->postJson('/api/mortage/calculate', [
+    ])->postJson('/api/mortgage/calculate', [
             'loan_amount' => 50000,
             'duration_months' => 24,
             'rate' => 4.0,
@@ -121,11 +121,11 @@ class MortageCalculationTest extends TestCase
     /*
      * Testa campos obrigatórios
      * */
-    public function test_mortage_calculation_required_fields(): void
+    public function test_mortgage_calculation_required_fields(): void
     {
         $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . config('app.api_token'),
-    ])->postJson('/api/mortage/calculate', []);
+    ])->postJson('/api/mortgage/calculate', []);
         $response
             ->assertStatus(422)
             ->assertJsonValidationErrors(['loan_amount', 'type']);
@@ -134,11 +134,11 @@ class MortageCalculationTest extends TestCase
     /**
      * Testa a geração da tabela de amortização.
      */
-    public function test_mortage_amortization_schedule(): void
+    public function test_mortgage_amortization_schedule(): void
     {
         $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . config('app.api_token'),
-    ])->postJson('/api/mortage/amortization-schedule', [
+    ])->postJson('/api/mortgage/amortization-schedule', [
             'loan_amount' => 10000.00,
             'duration_years' => 1,
             'rate' => 5.0,
@@ -173,11 +173,11 @@ class MortageCalculationTest extends TestCase
     /*
      * Testa cálculo com spread em taxa variável
      */
-    public function test_variable_rate_mortage_calculation_with_spread(): void
+    public function test_variable_rate_mortgage_calculation_with_spread(): void
     {
         $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . config('app.api_token'),
-    ])->postJson('/api/mortage/calculate-spread', [
+    ])->postJson('/api/mortgage/calculate-spread', [
             'loan_amount' => 120000,
             'duration_years' => 20,
             'index_rate' => 1.8,
@@ -202,11 +202,11 @@ class MortageCalculationTest extends TestCase
     /**
      * Testa exportação da tabela de amortização
      */
-    public function test_mortage_amortization_schedule_export(): void
+    public function test_mortgage_amortization_schedule_export(): void
     {
         $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . config('app.api_token'),
-    ])->postJson('/api/mortage/export', [
+    ])->postJson('/api/mortgage/export', [
             'loan_amount' => 80000.00,
             'duration_years' => 10,
             'rate' => 4.5,

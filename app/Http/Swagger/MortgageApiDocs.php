@@ -32,7 +32,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Post(
- *     path="/api/mortage/calculate",
+ *     path="/api/mortgage/calculate",
  *     tags={"Mortgage"},
  *     summary="Calcula a prestação mensal",
  *     description="Calcula o valor da prestação mensal com base no tipo de taxa (fixa ou variável) e prazo.",
@@ -66,7 +66,7 @@ use OpenApi\Annotations as OA;
  * )
  *
  * @OA\Post(
- *     path="/api/mortage/amortization-schedule",
+ *     path="/api/mortgage/amortization-schedule",
  *     tags={"Mortgage"},
  *     summary="Gera o plano de amortização completo",
  *     description="Lista mês a mês com juros, capital amortizado e saldo restante.",
@@ -105,7 +105,7 @@ use OpenApi\Annotations as OA;
  * )
  *
  * @OA\Post(
- *     path="/api/mortage/calculate-spread",
+ *     path="/api/mortgage/calculate-spread",
  *     tags={"Mortgage"},
  *     summary="Calcula prestação com taxa variável (Euribor + Spread)",
  *     description="Calcula a prestação mensal considerando index_rate + spread como TAN efetiva.",
@@ -134,7 +134,7 @@ use OpenApi\Annotations as OA;
  * )
  *
  * @OA\Post(
- *     path="/api/mortage/export",
+ *     path="/api/mortgage/export",
  *     tags={"Mortgage"},
  *     summary="Exporta simulação em CSV",
  *     description="Exporta o plano de amortização em formato CSV para download.",
@@ -163,4 +163,4 @@ use OpenApi\Annotations as OA;
  *     @OA\Response(response=422, description="Erro de validação dos parâmetros")
  * )
  */
-class MortageApiDocs {}
+class MortgageApiDocs {}
