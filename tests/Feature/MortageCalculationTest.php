@@ -11,7 +11,9 @@ class MortageCalculationTest extends TestCase
      * Testa amortização de taxa fixa
      */
     public function test_fixed_rate_mortage_calculation(): void{
-        $response = $this->postJson('/api/mortage/calculate', [
+        $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . config('app.api_token'),
+    ])->postJson('/api/mortage/calculate', [
             'loan_amount' => 200000,
             'duration_years' => 30,
             'rate' => 3.0,
@@ -34,7 +36,9 @@ class MortageCalculationTest extends TestCase
      */
     public function test_variable_rate_mortage_calculation(): void
     {
-        $response = $this->postJson('/api/mortage/calculate', [
+        $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . config('app.api_token'),
+    ])->postJson('/api/mortage/calculate', [
             'loan_amount' => 150000,
             'duration_years' => 15,
             'index_rate' => 2.0,
@@ -59,7 +63,9 @@ class MortageCalculationTest extends TestCase
      */
     public function test_mortage_calculation_with_invalid_parameters(): void
     {
-        $response = $this->postJson('/api/mortage/calculate', [
+        $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . config('app.api_token'),
+    ])->postJson('/api/mortage/calculate', [
             'loan_amount' => -50000,
             'duration_years' => 10,
             'rate' => 4.0,
@@ -75,7 +81,9 @@ class MortageCalculationTest extends TestCase
      * */
     public function test_mortage_calculation_without_duration(): void
     {
-        $response = $this->postJson('/api/mortage/calculate', [
+        $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . config('app.api_token'),
+    ])->postJson('/api/mortage/calculate', [
             'loan_amount' => 100000,
             'type' => 'fixed',
             'rate' => 5.0,
@@ -90,7 +98,9 @@ class MortageCalculationTest extends TestCase
      * */
     public function test_mortage_calculation_with_duration_in_months(): void
     {
-        $response = $this->postJson('/api/mortage/calculate', [
+        $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . config('app.api_token'),
+    ])->postJson('/api/mortage/calculate', [
             'loan_amount' => 50000,
             'duration_months' => 24,
             'rate' => 4.0,
@@ -113,7 +123,9 @@ class MortageCalculationTest extends TestCase
      * */
     public function test_mortage_calculation_required_fields(): void
     {
-        $response = $this->postJson('/api/mortage/calculate', []);
+        $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . config('app.api_token'),
+    ])->postJson('/api/mortage/calculate', []);
         $response
             ->assertStatus(422)
             ->assertJsonValidationErrors(['loan_amount', 'type']);
@@ -124,7 +136,9 @@ class MortageCalculationTest extends TestCase
      */
     public function test_mortage_amortization_schedule(): void
     {
-        $response = $this->postJson('/api/mortage/amortization-schedule', [
+        $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . config('app.api_token'),
+    ])->postJson('/api/mortage/amortization-schedule', [
             'loan_amount' => 10000.00,
             'duration_years' => 1,
             'rate' => 5.0,
@@ -161,7 +175,9 @@ class MortageCalculationTest extends TestCase
      */
     public function test_variable_rate_mortage_calculation_with_spread(): void
     {
-        $response = $this->postJson('/api/mortage/calculate-spread', [
+        $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . config('app.api_token'),
+    ])->postJson('/api/mortage/calculate-spread', [
             'loan_amount' => 120000,
             'duration_years' => 20,
             'index_rate' => 1.8,
@@ -188,12 +204,19 @@ class MortageCalculationTest extends TestCase
      */
     public function test_mortage_amortization_schedule_export(): void
     {
-        $response = $this->postJson('/api/mortage/export', [
+        $response = $this->withHeaders([
+        'Authorization' => 'Bearer ' . config('app.api_token'),
+    ])->postJson('/api/mortage/export', [
             'loan_amount' => 80000.00,
             'duration_years' => 10,
             'rate' => 4.5,
             'type' => 'fixed',
         ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'text/csv; charset=UTF-8')
+            ->assertHeader('Content-Disposition');
 
     }
 }

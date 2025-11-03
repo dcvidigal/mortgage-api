@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    // API Token exemplo para o challange
+    'api_token' => env('API_TOKEN', null),
 ];

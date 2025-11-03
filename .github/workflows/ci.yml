@@ -51,4 +51,5 @@ jobs:
           DB_DATABASE: ${{ secrets.DB_DATABASE }}
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
         run: vendor/bin/phpunit
